@@ -1,0 +1,51 @@
+
+body {
+    min-height: 100vh;
+    position: relative;
+    margin: 0;
+    color: white;
+    font-family: "Titillium Web";
+}
+
+.container {
+    background-color: #3e60db;
+    height: 100vh;
+    align-items: center;
+    display: grid;
+    grid-template-columns: 60% auto;
+}
+
+.left {
+    margin-left: 15%;
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    font-size: 120px;
+    font-weight: bold;
+}
+
+.subtitle {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+
+.authors {
+    font-family: "sansation";
+    font-size: 20px;
+}
+
+img {
+    width: 60%;
+}
+
+#resource {
+    font-family: "sansation";
+    font-size: 20px;
+    position: absolute;
+    top: 92%;
+    left: 50%;
+    translate: -50% -50%;
+}

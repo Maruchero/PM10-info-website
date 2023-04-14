@@ -1,0 +1,31 @@
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#navBar {
+    width: 100%;
+    background-color: #3e60db;
+    display: flex;
+    justify-content: space-between;
+}
+
+.left, .right {
+    display: flex;
+    padding: 0;
+}
+
+#navBar a, #navBar .selected {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 15px;
+    font-family: "Titillium Web";
+    padding: 15px 30px;
+    margin: 0;
+}
+
+#navBar a:hover, #navBar .selected {
+    background-color: #3655c4;
+}
