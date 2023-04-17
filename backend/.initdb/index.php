@@ -126,7 +126,7 @@ function rilevazioni($fname, $conn) {
     $tipoInquinante = "PM2,5";
     $valore = $data[6];
 
-    $sql = "INSERT INTO rilevazioni (codseqst, data, tipoInquinante, valore)
+    $sql = "INSERT IGNORE INTO rilevazioni (codseqst, data, tipoInquinante, valore)
             VALUES (\"$codseqst5\", \"$data[0]\", \"$tipoInquinante\", \"$valore\")";
 
     if ($conn->query($sql) === TRUE) {
