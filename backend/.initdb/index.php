@@ -12,7 +12,7 @@ if ($conn->connect_error) {
 
 $sql = "CREATE DATABASE IF NOT EXISTS $dbname";
 if ($conn->query($sql) === TRUE) {
-    echo "Database creato con successo\n";
+    echo "Database ARPAVGruppon creato con successo\n";
 } else {
     echo "Errore nella creazione del database: " . $conn->error;
 }
@@ -30,7 +30,7 @@ $sql = "CREATE TABLE IF NOT EXISTS stazioni (
 );";
 
 if ($conn->query($sql) === TRUE) {
-  echo "Tabella creata con successo\n";
+  echo "Tabella stazioni creata con successo\n";
 } else {
   echo "Errore nella creazione della tabella: " . $conn->error;
 }
@@ -45,7 +45,7 @@ $sql = "CREATE TABLE IF NOT EXISTS rilevazioni (
 );";
 
 if ($conn->query($sql) === TRUE) {
-    echo "Tabella creata con successo\n";
+    echo "Tabella rilevazioni creata con successo\n";
 } else {
     echo "Errore nella creazione della tabella: " . $conn->error;
 }
@@ -67,7 +67,7 @@ while (($data = fgetcsv($file)) !== FALSE) {
           VALUES (\"$codseqst\", \"$nome\", \"$localita\", \"$comune\", \"$provincia\", \"$lat\", \"$lon\")";
 
   if ($conn->query($sql) === TRUE) {
-    echo "Record inserito con successo\n";
+    $result= "Record inserito con successo\n";
   } else {
     echo "Errore nell'inserimento del record: " . $conn->error;
   }
@@ -113,11 +113,11 @@ function rilevazioni($fname, $conn) {
           break;
       }
     
-      $sql = "INSERT INTO rilevazioni (codseqst, data, tipoInquinante, valore) VALUES 
+      $sql = "INSERT IGNORE INTO rilevazioni (codseqst, data, tipoInquinante, valore) VALUES 
               (\"$codseqst\", \"$data[0]\", \"$tipoInquinante\", \"$valore\")";
 
       if ($conn->query($sql) === TRUE) {
-        echo "Record inserito con successo\n";
+        $result=  "Record inserito con successo\n";
       } else {
         echo "Errore nell'inserimento del record: " . $conn->error;
       }
@@ -126,11 +126,11 @@ function rilevazioni($fname, $conn) {
     $tipoInquinante = "PM2,5";
     $valore = $data[6];
 
-    $sql = "INSERT INTO rilevazioni (codseqst, data, tipoInquinante, valore)
+    $sql = "INSERT IGNORE INTO rilevazioni (codseqst, data, tipoInquinante, valore)
             VALUES (\"$codseqst5\", \"$data[0]\", \"$tipoInquinante\", \"$valore\")";
 
     if ($conn->query($sql) === TRUE) {
-      echo "Record inserito con successo\n";
+      $result=  "Record inserito con successo\n";
     } else {
       echo "Errore nell'inserimento del record: " . $conn->error;
     }
@@ -138,6 +138,23 @@ function rilevazioni($fname, $conn) {
 
   fclose($file);
 }
+$conn->close();
 
+$conn = new mysqli($servername, $username, $password);
+if ($conn->connect_error) {
+    die("Connessione fallita: " . $conn->connect_error);
+}
+$conn->select_db($dbname);
 rilevazioni('csv/PM10_centraline_daily_2019.csv', $conn);
+
+$conn->close();
+
+$conn = new mysqli($servername, $username, $password);
+if ($conn->connect_error) {
+    die("Connessione fallita: " . $conn->connect_error);
+}
+$conn->select_db($dbname);
 rilevazioni('csv/PM10_centraline_daily_2020.csv', $conn);
+$conn->select_db($dbname);
+
+echo "Dati inseriti con successo!";
