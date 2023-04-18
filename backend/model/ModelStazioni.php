@@ -3,9 +3,10 @@ require_once(__DIR__ . "\\..\\connect.php");
 
 class ModelStazioni {
   static function get_all() {
-    return array(
-      "key" => "value",
-      "key1" => "value1"
-    );
+    require("../connect.php");
+    $query = "SELECT * FROM Stazioni";
+    $result = mysqli_query($conn, $query);
+    $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    return $data;
   }
 }
