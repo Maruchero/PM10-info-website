@@ -8,8 +8,8 @@ class ViewRilevazioni {
     return $json;
   }
 
-  static function get_by_city() {
-    $data = ModelRilevazioni::get_by_city();
+  static function get_by_city($provincia) {
+    $data = ModelRilevazioni::get_by_city($provincia);
     $json = json_encode($data);
     return $json;
   }

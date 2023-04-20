@@ -10,9 +10,8 @@ class ModelRilevazioni {
     return $data;
   }
 
-  static function get_by_city() {
+  static function get_by_city($provincia) {
     global $conn;
-    $provincia = $_GET["city"];
     $query = "SELECT codseqst FROM Stazioni WHERE provincia='$provincia'";
     $result = mysqli_query($conn, $query);
     $codseqst_array = array();
