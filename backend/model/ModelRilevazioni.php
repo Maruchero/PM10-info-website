@@ -10,17 +10,21 @@ class ModelRilevazioni {
     return $data;
   }
 
-  static function get_by_city($provincia) {
+  static function get_city() {
     global $conn;
-    $query = "SELECT codseqst FROM Stazioni WHERE provincia='$provincia'";
+    $query = "SELECT DISTINCT S.nome
+              FROM Stazioni AS S, Rilevazioni AS R
+              WHERE S.codseqst=R.codseqst";
     $result = mysqli_query($conn, $query);
-    $codseqst_array = array();
-    while ($row = mysqli_fetch_assoc($result)) {
-        $codseqst = $row['codseqst'];
-        array_push($codseqst_array, $codseqst);
-    }
+    $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    return $data;
+  }
 
-    $query = "SELECT * FROM Rilevazioni WHERE codseqst IN ('" . implode("','", $codseqst_array) . "')";
+  static function get_by_city($comune) {
+    global $conn;
+    $query = "SELECT R.codseqst, R.data, R.tipoInquinante, R.valore
+              FROM Stazioni AS S, Rilevazioni AS R
+              WHERE S.codseqst=R.codseqst AND S.nome='$comune'";
     $result = mysqli_query($conn, $query);
     $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
     return $data;
