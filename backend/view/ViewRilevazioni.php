@@ -19,4 +19,10 @@ class ViewRilevazioni {
     $json = json_encode($data);
     return $json;
   }
+
+  static function get_higher_avg() {
+    $data = ModelRilevazioni::get_higher_avg();
+    $json = json_encode($data);
+    return $json;
+  }
 }

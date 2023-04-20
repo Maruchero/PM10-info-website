@@ -8,13 +8,17 @@ switch ($_GET["mode"]) {
     echo ViewRilevazioni::get_all();
     break;
 
-    case 'get_city':
-      echo ViewRilevazioni::get_city();
-      break;
+  case 'get_city':
+    echo ViewRilevazioni::get_city();
+    break;
   
   case 'get_by_city':
     if (!isset($_GET["city"])) die("Missing parameter 'city'");
     $comune = $_GET["city"];
     echo ViewRilevazioni::get_by_city($comune);
+    break;
+  
+  case 'get_higher_avg':
+    echo ViewRilevazioni::get_higher_avg();
     break;
 }
