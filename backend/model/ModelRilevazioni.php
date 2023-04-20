@@ -38,11 +38,11 @@ class ModelRilevazioni {
       $query = "SELECT R.codseqst, R.data, R.tipoInquinante, R.valore
               FROM Stazioni AS S, Rilevazioni AS R
               WHERE S.codseqst=R.codseqst and R.tipoInquinante='PM2,5' AND S.nome='$comune'";
-    } else [
+    } else {
       $query = "SELECT R.codseqst, R.data, R.tipoInquinante, R.valore
               FROM Stazioni AS S, Rilevazioni AS R
               WHERE S.codseqst=R.codseqst and R.tipoInquinante='PM10' AND S.nome='$comune'";
-    ]
+    }
     
     $result = mysqli_query($conn, $query);
     $data = mysqli_fetch_all($result, MYSQLI_ASSOC);

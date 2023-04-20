@@ -1,0 +1,28 @@
+
+body {
+    font-family: "Titillium Web";
+}
+
+h2 {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    font-size: 32px;
+    line-height: 35px;
+}
+
+#dataCity {
+    border: 0;
+    outline: 0;
+    font-size: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+}
+
+#getByCity {
+    width: 85%!important;
+    position: relative!important;
+    left: 50%!important;
+    translate: -50%!important;
+    margin-bottom: 40px;
+}
