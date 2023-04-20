@@ -1,61 +1,70 @@
-var chart = undefined;
-
 async function options() {
-    let value = document.getElementById("dataCity");
-    let cities = await get_city();
+  let value = document.getElementById("dataCity");
+  let cities = await get_city();
 
-    for (let city of cities) {
+  for (let city of cities) {
+    let option = document.createElement("option");
+    option.id = city.nome;
+    option.innerHTML = city.nome;
+    value.appendChild(option);
+  }
 
-        let option = document.createElement("option");
-        option.id = city.nome;
-        option.innerHTML = city.nome;
-        value.appendChild(option);
-    }
-
-    dataCity();
+  dataCity();
 }
 
+const blue = ["#36a2eb", "#9ad0f5"];
+const orange = ["#fea047", "#fec784"];
+var chart;
 async function dataCity() {
-    let value = document.getElementById("dataCity").value;
+  let value = document.getElementById("dataCity").value;
 
-    // Download data
-    let result = await get_by_city(value);
-    let data = [];
-    for (let item of result) {
-        data.push({ x: item.data, y: item.valore })
-    }
+  // Set color
+  const color = value === "VR-Giarol Grande PM2,5" ? orange : blue;
 
-    // Grafico
-    document.getElementById('getByCity').innerHTML = "";
+  // Download and build data
+  let result = await get_by_city(value);
+  let data = [];
+  for (let item of result) {
+    data.push({ x: item.data, y: item.valore });
+  }
 
-    const ctx = document.getElementById('getByCity');
+  // Get chart
+  const ctx = document.getElementById("getByCity");
 
-    // Destroy chart
-    if (chart) chart.destroy();
+  // Destroy chart
+  if (chart) chart.destroy();
 
-    // Build chart
-    chart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            datasets: [{
-                data,
-                tension: 0,
-                label: "PM10"
-            }],
+  // Build chart
+  chart = new Chart(ctx, {
+    type: "line",
+    data: {
+      datasets: [
+        {
+          data,
+          tension: 0,
+          label: "PM10",
+          borderColor: color[0],
+          backgroundColor: color[1],
         },
-        options: {
-            scales: {
-
-                y: {
-                    min: 0,
-                },
-
-            },
-            elements: {
-                point: {
-                    radius: 0
-                }
-            }
-        }
-    });
+      ],
+    },
+    options: {
+      scales: {
+        x: {
+          type: "time",
+          time: {
+            unit: "month",
+          },
+        },
+        y: {
+          min: 0,
+        },
+      },
+      elements: {
+        point: {
+          radius: 0,
+        },
+      },
+    },
+  });
 }

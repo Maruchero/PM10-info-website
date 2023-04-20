@@ -21,8 +21,10 @@ h2 {
 
 #getByCity {
     width: 85%!important;
-    position: relative!important;
-    left: 50%!important;
-    translate: -50%!important;
+    max-height: 70vh;
     margin-bottom: 40px;
+
+    position: relative;
+    left: 50%;
+    translate: -50%;
 }
