@@ -35,6 +35,8 @@ class ModelRilevazioni {
   static function get_by_city($comune) {
     global $conn;
     if (strpos($comune, 'PM2,5') !== false) {
+      $comune_parts = explode('PM2,5', $comune);
+      $comune = $comune_parts[0];
       $query = "SELECT R.codseqst, R.data, R.tipoInquinante, R.valore
               FROM Stazioni AS S, Rilevazioni AS R
               WHERE S.codseqst=R.codseqst and R.tipoInquinante='PM2,5' AND S.nome='$comune'";
