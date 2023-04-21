@@ -95,6 +95,10 @@ function rilevazioni($fname, $conn) {
     for ($i = 0; $i < 5; $i++) {
       $tipoInquinante = "PM10";
       $valore = $data[$i+1];
+      
+      if ($valore == ""){
+        continue;
+      }
     
       switch ($i) {
         case 0:
@@ -126,6 +130,10 @@ function rilevazioni($fname, $conn) {
 
     $tipoInquinante = "PM2,5";
     $valore = $data[6];
+    
+    if ($valore == ""){
+      continue;
+    }
 
     $sql = "INSERT IGNORE INTO rilevazioni (codseqst, data, tipoInquinante, valore)
             VALUES (\"$codseqst5\", \"$data[0]\", \"$tipoInquinante\", \"$valore\")";
