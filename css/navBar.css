@@ -2,11 +2,13 @@
 body {
     margin: 0;
     padding: 0;
+    --light-blue: #6da0e4;
+    --blue: #3e60db;
 }
 
 #navBar {
     width: 100%;
-    background-color: #3e60db;
+    background-color: var(--blue);
     display: flex;
     justify-content: space-between;
 }

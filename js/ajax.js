@@ -14,3 +14,11 @@ async function get_city() {
         })
     ).json();
 }
+
+async function top_city() {
+    return await (
+        await fetch(`backend/controller/ControllerRilevazioni.php/?mode=get_higher_avg`, {
+            method: "GET",
+        })
+    ).json();
+}
