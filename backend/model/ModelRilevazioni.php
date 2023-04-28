@@ -80,4 +80,12 @@ class ModelRilevazioni {
 
     return $data;
   }
+
+  static function get_range_counts() {
+    global $conn;
+    $query = "SELECT * FROM conteggio_fasce";
+    $result = mysqli_query($conn, $query);
+    $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    return $data;
+  }
 }

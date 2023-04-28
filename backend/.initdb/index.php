@@ -164,6 +164,22 @@ if ($conn->connect_error) {
 }
 $conn->select_db($dbname);
 rilevazioni('csv/PM10_centraline_daily_2020.csv', $conn);
-$conn->select_db($dbname);
+
+$sql = "CREATE VIEW `conteggio_fasce` AS
+        SELECT stazioni.nome, 
+              SUM(CASE WHEN rilevazioni.valore > 35 THEN 1 ELSE 0 END) AS count_red,
+              SUM(CASE WHEN rilevazioni.valore <= 35 AND rilevazioni.valore > 15 THEN 1 ELSE 0 END) AS count_yellow,
+              SUM(CASE WHEN rilevazioni.valore <= 15 AND rilevazioni.valore >= 0 THEN 1 ELSE 0 END) AS count_green
+        FROM stazioni
+        JOIN rilevazioni ON stazioni.codseqst = rilevazioni.codseqst
+        GROUP BY stazioni.nome;";
+
+if ($conn->query($sql) === TRUE) {
+  $result= "Vista creata con successo\n";
+} else {
+  echo "Errore nella creazione della vista: " . $conn->error;
+}
+
+$conn->close();
 
 echo "Dati inseriti con successo!";

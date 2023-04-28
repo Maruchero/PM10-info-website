@@ -21,4 +21,8 @@ switch ($_GET["mode"]) {
   case 'get_higher_avg':
     echo ViewRilevazioni::get_higher_avg();
     break;
+
+  case 'get_range_counts':
+    echo ViewRilevazioni::get_range_counts();
+    break;
 }

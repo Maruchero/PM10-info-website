@@ -25,4 +25,10 @@ class ViewRilevazioni {
     $json = json_encode($data);
     return $json;
   }
+
+  static function get_range_counts() {
+    $data = ModelRilevazioni::get_range_counts();
+    $json = json_encode($data);
+    return $json;
+  }
 }
