@@ -5,48 +5,43 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PM10 - Dati Città</title>
-
+    <title>PM10 - Analisi Città</title>
     <link rel="icon" href="img/fine-dust.png">
     <link rel="stylesheet" href="css/navBar.css">
     <link rel="stylesheet" href="css/fonts.css">
-    <link rel="stylesheet" href="css/dataCity.css">
+    <link rel="stylesheet" href="css/cityAnalytics.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web&display=swap" rel="stylesheet">
 
     <script src="js/ajax.js"></script>
-    <script src="js/dataCity.js"></script>
+    <script src="js/cityAnalytics.js"></script>
 
     <!-- External resources -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/date-fns/1.30.1/date_fns.js"></script>
     <script
-      src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
-
+        src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
 </head>
 
-<body onload="options()">
+<body onload="cityAnalytics()">
     <div id="navBar">
         <div class="left">
-            <span class="selected">Dati Città</span>
+            <a href="dataCity.html">Dati Città</a>
             <a href="topCity.html">Top Città</a>
-            <a href="cityAnalytics.html">Analisi Città</a>
+            <span class="selected">Analisi Città</span>
         </div>
         <div class="right">
             <a href="index.html">Home</a>
         </div>
     </div>
 
-    <h2>
-        <div class="sel">
-            <button name="dataCity" id="dataCity" onclick="openSelection()"></button>
-            <img class="icon" src="img/chevron-down-solid.svg" id="icon" onclick="openSelection()">
-            <div id="options">
-            </div>
-        </div>
+    <h2 class="title">
+        Analisi Città
     </h2>
 
-    <!-- il grafico rappresenta la concentrazione di PM10 / PM2.5 in microgrammi su metro cubo visualizzabile per mese -->
     <div>
-        <canvas id="getByCity"></canvas>
+        <canvas id="cityAnalytics"></canvas>
     </div>
 </body>
 

@@ -22,3 +22,11 @@ async function top_city() {
         })
     ).json();
 }
+
+async function get_cityAnalytics() {
+    return await (
+        await fetch(`backend/controller/ControllerRilevazioni.php/?mode=get_range_counts`, {
+            method: "GET",
+        })
+    ).json();
+}
