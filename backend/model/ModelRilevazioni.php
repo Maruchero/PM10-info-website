@@ -88,4 +88,20 @@ class ModelRilevazioni {
     $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
     return $data;
   }
+
+  static function get_yearly_average() {
+    global $conn;
+    $query = "SELECT
+                  s.nome,
+                  YEAR(r.data) AS year,
+                  AVG(r.valore) AS average_value
+              FROM
+                  rilevazioni r
+                  JOIN stazioni s ON r.codseqst = s.codseqst
+              GROUP BY
+                  s.nome, YEAR(r.data);";
+    $result = mysqli_query($conn, $query);
+    $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    return $data;
+  }
 }

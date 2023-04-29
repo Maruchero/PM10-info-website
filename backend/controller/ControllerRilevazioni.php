@@ -25,4 +25,8 @@ switch ($_GET["mode"]) {
   case 'get_range_counts':
     echo ViewRilevazioni::get_range_counts();
     break;
+  
+  case 'get_yearly_average':
+    echo ViewRilevazioni::get_yearly_average();
+    break;
 }

@@ -31,4 +31,10 @@ class ViewRilevazioni {
     $json = json_encode($data);
     return $json;
   }
+
+  static function get_yearly_average() {
+    $data = ModelRilevazioni::get_yearly_average();
+    $json = json_encode($data);
+    return $json;
+  }
 }
