@@ -30,3 +30,11 @@ async function get_cityAnalytics() {
         })
     ).json();
 }
+
+async function get_yearlyData() {
+    return await (
+        await fetch(`backend/controller/ControllerRilevazioni.php/?mode=get_yearly_average`, {
+            method: "GET",
+        })
+    ).json();
+}

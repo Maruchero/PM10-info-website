@@ -82,6 +82,7 @@ img {
   font-family: inherit;
   color: inherit;
   text-decoration: none;
+  width: max-content;
 }
 
 .header button {
@@ -99,6 +100,7 @@ img {
 
   background: white;
   box-shadow: 0 0 5px #fff3;
+  cursor: pointer;
 }
 
 /* Sections */

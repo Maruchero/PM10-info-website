@@ -17,7 +17,7 @@ body {
     cursor: default;
 }
 
-#topCity, #aAa {
+#yearlyData {
     width: 85% !important;
     max-height: 70vh;
     margin-bottom: 40px;
