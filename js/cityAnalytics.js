@@ -23,7 +23,7 @@ async function cityAnalytics() {
         xValues.push(city.nome);
         red.push(city.count_red);
         yellow.push(city.count_yellow);
-        green.push(city.count_red);
+        green.push(city.count_green);
     }
 
     chart = new Chart(ctx, {
