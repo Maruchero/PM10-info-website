@@ -170,9 +170,8 @@ $sql = "CREATE VIEW `conteggio_fasce` AS
               SUM(CASE WHEN rilevazioni.valore > 35 THEN 1 ELSE 0 END) AS count_red,
               SUM(CASE WHEN rilevazioni.valore <= 35 AND rilevazioni.valore > 15 THEN 1 ELSE 0 END) AS count_yellow,
               SUM(CASE WHEN rilevazioni.valore <= 15 AND rilevazioni.valore >= 0 THEN 1 ELSE 0 END) AS count_green
-        FROM stazioni
+        FROM stazioni JOIN rilevazioni ON stazioni.codseqst = rilevazioni.codseqst
         WHERE rilevazioni.tipoInquinante='PM10'
-        JOIN rilevazioni ON stazioni.codseqst = rilevazioni.codseqst
         GROUP BY stazioni.nome;";
 
 if ($conn->query($sql) === TRUE) {
