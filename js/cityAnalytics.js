@@ -1,6 +1,6 @@
 const redColor = "#FF9580";
 const yellowColor = "#FFEA80";
-const greenColor = "#BFFF80";
+const greenColor = "#61dc82";
 var chart;
 
 async function cityAnalytics() {
