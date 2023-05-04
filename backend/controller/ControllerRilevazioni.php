@@ -30,7 +30,4 @@ switch ($_GET["mode"]) {
     echo ViewRilevazioni::get_yearly_average();
     break;
 
-  case 'get_station_city':
-    echo ViewRilevazioni::get_station_city();
-    break;
 }

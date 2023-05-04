@@ -38,12 +38,12 @@ class ModelRilevazioni {
       $comune_parts = explode('PM2,5', $comune);
       $comune = $comune_parts[0];
       $query = "SELECT R.codseqst, R.data, R.tipoInquinante, R.valore
-              FROM Stazioni AS S, Rilevazioni AS R
-              WHERE S.codseqst=R.codseqst and R.tipoInquinante='PM2,5' AND S.nome='$comune'";
+                FROM Stazioni AS S, Rilevazioni AS R
+                WHERE S.codseqst=R.codseqst and R.tipoInquinante='PM2,5' AND S.nome='$comune'";
     } else {
       $query = "SELECT R.codseqst, R.data, R.tipoInquinante, R.valore
-              FROM Stazioni AS S, Rilevazioni AS R
-              WHERE S.codseqst=R.codseqst and R.tipoInquinante='PM10' AND S.nome='$comune'";
+                FROM Stazioni AS S, Rilevazioni AS R
+                WHERE S.codseqst=R.codseqst and R.tipoInquinante='PM10' AND S.nome='$comune'";
     }
     
     $result = mysqli_query($conn, $query);
@@ -100,13 +100,4 @@ class ModelRilevazioni {
     return $data;
   }
 
-  static function get_station_city() {
-    global $conn;
-    $query = "SELECT nome, COUNT(*) AS num_stazioni
-              FROM Stazioni
-              GROUP BY codseqst;";
-    $result = mysqli_query($conn, $query);
-    $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
-    return $data;
-  }
 }
