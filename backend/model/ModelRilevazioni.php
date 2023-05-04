@@ -100,4 +100,13 @@ class ModelRilevazioni {
     return $data;
   }
 
+  static function get_stations_coordinates() {
+    global $conn;
+    $query = "SELECT S,nome, S.lat, S.lon
+              FROM Stazioni AS S, Rilevazioni AS R 
+              WHERE S.codseqst = R.codseqst;";
+    $result = mysqli_query($conn, $query);
+    $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    return $data;
+  }
 }

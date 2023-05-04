@@ -38,4 +38,10 @@ class ViewRilevazioni {
     return $json;
   }
 
+  static function get_stations_coordinates() {
+    $data = ModelRilevazioni::get_stations_coordinates();
+    $json = json_encode($data);
+    return $json;
+  }
+
 }
