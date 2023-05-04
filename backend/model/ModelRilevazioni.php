@@ -91,15 +91,20 @@ class ModelRilevazioni {
 
   static function get_yearly_average() {
     global $conn;
-    $query = "SELECT
-                  s.nome,
-                  YEAR(r.data) AS year,
-                  AVG(r.valore) AS average_value
-              FROM
-                  rilevazioni r
-                  JOIN stazioni s ON r.codseqst = s.codseqst
-              GROUP BY
-                  s.nome, YEAR(r.data);";
+    $query = "SELECT S.nome, YEAR(R.data) AS year, AVG(R.valore) AS average_value
+              FROM Rilevazioni R, Stazioni AS S 
+              WHERE R.codseqst = S.codseqst
+              GROUP BY S.nome, YEAR(R.data);";
+    $result = mysqli_query($conn, $query);
+    $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    return $data;
+  }
+
+  static function get_station_city() {
+    global $conn;
+    $query = "SELECT nome, COUNT(*) AS num_stazioni
+              FROM Stazioni
+              GROUP BY codseqst;";
     $result = mysqli_query($conn, $query);
     $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
     return $data;

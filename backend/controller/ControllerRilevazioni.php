@@ -29,4 +29,8 @@ switch ($_GET["mode"]) {
   case 'get_yearly_average':
     echo ViewRilevazioni::get_yearly_average();
     break;
+
+  case 'get_station_city':
+    echo ViewRilevazioni::get_station_city();
+    break;
 }

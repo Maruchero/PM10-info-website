@@ -37,4 +37,10 @@ class ViewRilevazioni {
     $json = json_encode($data);
     return $json;
   }
+
+  static function get_station_city() {
+    $data = ModelRilevazioni::get_station_city();
+    $json = json_encode($data);
+    return $json;
+  }
 }
