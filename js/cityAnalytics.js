@@ -8,8 +8,6 @@ async function cityAnalytics() {
 
     let result = await get_cityAnalytics();
 
-    console.log(result);
-
     // Destroy chart
     if (chart) chart.destroy();
 

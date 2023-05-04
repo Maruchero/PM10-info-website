@@ -7,8 +7,6 @@ async function yearlyData() {
 
     let result = await get_yearlyData();
 
-    console.log(result);
-
     // Destroy chart
     if (chart) chart.destroy();
 

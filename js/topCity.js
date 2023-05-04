@@ -7,8 +7,6 @@ async function topCity() {
 
     let result = await top_city();
 
-    console.log(result);
-
     // Destroy chart
     if (chart) chart.destroy();
 

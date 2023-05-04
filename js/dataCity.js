@@ -10,7 +10,6 @@ async function options() {
     option.innerHTML = city.nome;
     options.appendChild(option);
     option.onclick=()=>{
-      console.log(option.innerHTML);
       value.innerHTML = option.innerHTML; 
       dataCity();
       openSelection();

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PM10 - Top Città</title>
+    <link rel="icon" href="img/fine-dust.png">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/navBar.css">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/stationsMap.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web&display=swap" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+    <script src="js/ajax.js"></script>
+    <script src="js/stationsMap.js"></script>
+
+    <!-- External resources -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/date-fns/1.30.1/date_fns.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+
+</head>
+
+<body onload="getStationsCoordinates()">
+    <div id="navBar">
+        <div class="left">
+            <a href="dataCity.html">Dati Città</a>
+            <span class="selected">Top Città</span>
+            <a href="cityAnalytics.html">Analisi Città</a>
+            <a href="yearlyData.html">Media Annuale</a>
+        </div>
+        <div class="right">
+            <a href="index.html">Home</a>
+        </div>
+    </div>
+
+    <h2 class="title">
+        Città più inquinanti
+    </h2>
+
+    <div id="map"></div>
+
+</body>
+</html>

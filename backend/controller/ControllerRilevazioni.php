@@ -7,10 +7,6 @@ switch ($_GET["mode"]) {
   case 'get_all':
     echo ViewRilevazioni::get_all();
     break;
-
-  case 'get_city':
-    echo ViewRilevazioni::get_city();
-    break;
   
   case 'get_by_city':
     if (!isset($_GET["city"])) die("Missing parameter 'city'");
@@ -28,10 +24,6 @@ switch ($_GET["mode"]) {
   
   case 'get_yearly_average':
     echo ViewRilevazioni::get_yearly_average();
-    break;
-  
-  case 'get_stations_coordinates':
-    echo ViewRilevazioni::get_stations_coordinates();
     break;
 
 }
