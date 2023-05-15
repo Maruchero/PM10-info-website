@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Mag 15, 2023 alle 14:31
--- Versione del server: 10.4.24-MariaDB
--- Versione PHP: 8.1.6
+-- Creato il: Mag 03, 2023 alle 21:37
+-- Versione del server: 10.4.27-MariaDB
+-- Versione PHP: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -45,7 +45,7 @@ CREATE TABLE `rilevazioni` (
   `data` date NOT NULL,
   `tipoInquinante` varchar(255) NOT NULL,
   `valore` double NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dump dei dati per la tabella `rilevazioni`
@@ -4307,7 +4307,7 @@ CREATE TABLE `stazioni` (
   `provincia` varchar(255) NOT NULL,
   `lat` double NOT NULL,
   `lon` double NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dump dei dati per la tabella `stazioni`
@@ -4358,7 +4358,7 @@ INSERT INTO `stazioni` (`codseqst`, `nome`, `localita`, `comune`, `provincia`, `
 --
 DROP TABLE IF EXISTS `conteggio_fasce`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `conteggio_fasce`  AS SELECT `stazioni`.`nome` AS `nome`, sum(case when `rilevazioni`.`valore` > 35 then 1 else 0 end) AS `count_red`, sum(case when `rilevazioni`.`valore` <= 35 and `rilevazioni`.`valore` > 15 then 1 else 0 end) AS `count_yellow`, sum(case when `rilevazioni`.`valore` <= 15 and `rilevazioni`.`valore` >= 0 then 1 else 0 end) AS `count_green` FROM (`stazioni` join `rilevazioni` on(`stazioni`.`codseqst` = `rilevazioni`.`codseqst`)) WHERE `rilevazioni`.`tipoInquinante` = 'PM10' GROUP BY `stazioni`.`nome``nome`  ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `conteggio_fasce` AS SELECT `stazioni`.`nome` AS `nome`, SUM(CASE WHEN `rilevazioni`.`valore` > 35 THEN 1 ELSE 0 END) AS `count_red`, SUM(CASE WHEN `rilevazioni`.`valore` <= 35 AND `rilevazioni`.`valore` > 15 THEN 1 ELSE 0 END) AS `count_yellow`, SUM(CASE WHEN `rilevazioni`.`valore` <= 15 AND `rilevazioni`.`valore` >= 0 THEN 1 ELSE 0 END) AS `count_green` FROM `stazioni` JOIN `rilevazioni` ON `stazioni`.`codseqst` = `rilevazioni`.`codseqst` WHERE `rilevazioni`.`tipoInquinante` = 'PM10' GROUP BY `stazioni`.`nome`;
 
 --
 -- Indici per le tabelle scaricate
