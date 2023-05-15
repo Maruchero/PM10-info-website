@@ -1,3 +1,0 @@
-Garonzi Marcello: coordinazione progetto, contenuto pagina principale
-Imran Talha: backend e query
-Klein Leon: frontend e grafici
